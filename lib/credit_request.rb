@@ -1,15 +1,17 @@
 class CreditRequest
+  attr_reader :age, :salary, :gender, :credit_history, :request_amount, :score
+
   def initialize(params)
     @age = params[:age]
     @salary = params[:salary]
     @gender = params[:gender]
     @credit_history = params[:credit_history]
     @request_amount = params[:request_amount]
-    @scoring = calculate_scoring
+    @score = calculate_scoring
   end
 
   def approved?
-    @scoring >= 50
+    @score >= 50
   end
 
   def calculate_scoring
@@ -21,7 +23,7 @@ class CreditRequest
       result += 20
     end
 
-    result += 10 if @gender == 'w'
+    result += 10 if @gender == :woman
 
     if @salary.between?(20_001, 40_000)
       result += 10
@@ -29,7 +31,7 @@ class CreditRequest
       result += 20
     end
 
-    result += 20 if @credit_history == 'y'
+    result += 20 if @credit_history == true
 
     if @request_amount.between?(20_001, 40_000)
       result += 10

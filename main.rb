@@ -10,10 +10,10 @@ puts 'Какая у вас месячная зарплата (в рублях)?'
 salary = $stdin.gets.to_i
 
 puts 'Какой ваш пол (m/w):'
-gender = $stdin.gets[0]
+gender = :female if $stdin.gets[0] == 'w'
 
 puts 'Есть ли у вас кредитная история? (y/n)'
-credit_history = $stdin.gets[0]
+credit_history = true if $stdin.gets[0] == 'y'
 
 puts 'Сколько денег вы хотите взять?'
 request_amount = $stdin.gets.to_i
