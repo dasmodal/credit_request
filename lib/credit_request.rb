@@ -1,13 +1,15 @@
 class CreditRequest
-	attr_reader :age, :salary, :gender, :credit_history, :request_amount
-
-  def initialize(age, salary, gender, credit_history, request_amount)
-    @age = age
-    @salary = salary
-    @gender = gender
-    @credit_history = credit_history
-    @request_amount = request_amount
+  def initialize(params)
+    @age = params[:age]
+    @salary = params[:salary]
+    @gender = params[:gender]
+    @credit_history = params[:credit_history]
+    @request_amount = params[:request_amount]
     @scoring = calculate_scoring
+  end
+
+  def approved?
+    @scoring >= 50
   end
 
   def calculate_scoring
@@ -36,9 +38,5 @@ class CreditRequest
     end
 
     result
-  end
-
-  def approve?
-    @scoring >= 50
   end
 end
